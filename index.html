@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>真心话大冒险</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		
+	</head>
+	<body>
+		<div id="main">
+			<div id="inputTxt" class="inputTxt">
+				<input type="text" name=""  id="userName" value="请输入玩家名字" />
+			</div>
+			<div id="btn" class="btn">
+				STAR
+			</div>
+			<div id="centent">
+				
+					<div class="centent_Img" id="centent_Img"></div>
+					<div class="centent_Title" id="centent_Title"></div>
+					<div class="btn2" id="btn2">
+							拖走，下一位！
+					</div>
+					
+				
+			</div>
+			
+		</div>
+		
+		<script type="text/javascript">
+			
+			var arr=[
+			{title:"你的初吻是几岁在什么地方被什么人夺去的?",imgSrc:"./img/pt_img1.jpg"},
+			{title:"在现场所有同学中，你看哪位异性同学最舒服？",imgSrc:"./img/pt_img2.jpg"},
+			{title:"你曾经意淫过在场的哪一位？如果过去没有的话，你现在会选哪一位作为YY对象？",imgSrc:"./img/pt_img3.jpg"},
+			{title:"如果跟你喜欢的人约会，碰到前任的男（女）朋友，会有什么表现？",imgSrc:"./img/pt_img4.jpg"},
+			{title:"说出五种避孕方式？",imgSrc:"./img/pt_img5.jpg"},
+			{title:"在你洗澡时，有一个非常丑的异性冲了进来，你会怎么样(实话实说，希望不要采用极端手法)",imgSrc:"./img/pt_img6.jpg"}];
+
+			window.onload = function(){
+				var inputTxt = document.getElementById("inputTxt");
+				var btn = document.getElementById("btn");
+				var centent = document.getElementById("centent");
+				var centent_Img = document.getElementById("centent_Img");
+				var centent_Title = document.getElementById("centent_Title");
+				var btn2 = document.getElementById("btn2");
+				var userName = document.getElementById("userName");
+				inputTxt.className = "inputDivStart";
+				btn.className = "btnStart";
+				var length = arr.length;
+				var newImg;
+				userName.onfocus = function(){
+					this.value = "";
+				}
+				
+				btn.addEventListener("click",function(){
+					var randomNum;
+					if(userName.value==""||userName.value=="请输入玩家名字"){
+						centent_Title.innerHTML = "你叫咩名呀？";
+						centent_Title.style.display = "block";
+
+					}else{
+						randomNum =parseInt(Math.random()*length);
+						newImg = document.createElement("img");
+						newImg.src = arr[randomNum].imgSrc;
+						centent_Img.appendChild(newImg);
+						centent_Title.innerHTML = arr[randomNum].title;
+						centent_Img.style.display = "block";
+						centent_Title.style.display = "block";
+						inputTxt.style.left = "200%";
+						btn.style.left = "200%";
+						centent.style.top = "0%";
+						main.style.backgroundColor = "rgba(255,255,255,0.8)";
+					}		
+				})
+				
+				
+				btn2.addEventListener("click",function(){
+						userName.value="请输入玩家名字";
+						centent_Img.removeChild(newImg);
+						centent_Img.style.display = "none";
+						centent_Title.style.display = "none";
+						inputTxt.style.left = "50%";
+						btn.style.left = "50%";
+						centent.style.top = "100%";
+						main.style.backgroundColor = "rgba(255,255,255,0)";
+				});
+				
+				
+			}
+			
+		</script>
+	</body>
+</html>
